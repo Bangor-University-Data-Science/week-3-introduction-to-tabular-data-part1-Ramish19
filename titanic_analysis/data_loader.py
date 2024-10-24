@@ -4,7 +4,9 @@ def load_titanic_data(filepath: str) -> pd.DataFrame:
     df = pd.read_csv(filepath)
     return df
 
-#testing function's execution
-if _name_ == "_main_":
+# Test function execution
+if __name__ == "__main__":
     filepath = "data/titanic.csv"  
     titanic_data = load_titanic_data(filepath)
+    
+    print(titanic_data.head())  # Optional: Print the first few rows to check the output

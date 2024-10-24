@@ -12,20 +12,21 @@ def create_feature_type_dict(df):
                 feature_types['numerical']['continuous'].append(column)
             else:
                 feature_types['numerical']['discrete'].append(column)
+                
         elif pd.api.types.is_categorical_dtype(df[column]) or df[column].dtype == 'object':
-            
             if 'categorical' not in feature_types:
                 feature_types['categorical'] = {'nominal': [], 'ordinal': []}
                 
-            if column in ['Pclass', 'Sex']:  
+            if column in ['Pclass', 'Sex']:  # Example of ordinal columns
                 feature_types['categorical']['ordinal'].append(column)
             else:
                 feature_types['categorical']['nominal'].append(column)
 
     return feature_types
 
-#testing function's executions and outputs
-if _name_ == "_main_":
+# Test function execution and output
+if __name__ == "__main__":
     filepath = "data/titanic.csv" 
     titanic_data = pd.read_csv(filepath)
     feature_type_dict = create_feature_type_dict(titanic_data)
+    print(feature_type_dict)

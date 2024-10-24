@@ -8,17 +8,19 @@ def create_summary_table(df):
         'Missing Values': [df[col].isnull().sum() for col in df.columns],
     }
     
-    #summary dataframe
+    # Create summary DataFrame
     summary_df = pd.DataFrame(summary_data)
     
-    #missing values
+    # Handle Missing Values
     summary_df['Has Missing Values?'] = summary_df['Missing Values'].apply(lambda x: 'Yes' if x > 0 else 'No')
     summary_df.drop(columns='Missing Values', inplace=True)
     
     return summary_df
 
-#testing function's executions and outputs
-if _name_ == "_main_":
+# Test function execution and output
+if __name__ == "__main__":
     filepath = "data/titanic.csv"  
     titanic_data = pd.read_csv(filepath)
     summary_table = create_summary_table(titanic_data)
+    
+    print(summary_table)  # Optional: Print the summary table to check the output
